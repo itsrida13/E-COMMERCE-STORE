@@ -131,7 +131,7 @@ export default function AdminSidebar({ isOpen, setIsOpen }) {
 
         <div className="sidebar-nav">
           <a
-            href="https://e-commerce-store-production-74f2.up.railway.app/"
+            href="https://glamourbeauty-production.up.railway.app"
             className="sidebar-link"
             title="Back to Store"
           >

@@ -14,21 +14,21 @@ export default function Navbar() {
     const adminData = localStorage.getItem("admin");
 
     if (adminToken || adminData) {
-      window.location.href = "http://localhost:5175/admin";
+      window.location.href = "https://glamourbeauty-admin-production.up.railway.app/admin";
     } else {
-      window.location.href = "http://localhost:5175/admin/login";
+      window.location.href = "https://glamourbeauty-admin-production.up.railway.app/admin/login";
     }
   };
 
   return (
     <nav className="navbar">
       <div className="container nav-inner">
-        <a href="http://localhost:5175/admin" onClick={handleAdminClick} className="nav-brand">
+        <a href="https://glamourbeauty-admin-production.up.railway.app/admin" onClick={handleAdminClick} className="nav-brand">
           Glamour Beauty Admin
         </a>
 
         <div className="nav-links">
-          <a href="http://localhost:5175/admin" onClick={handleAdminClick} className="nav-admin-btn">
+          <a href="https://glamourbeauty-admin-production.up.railway.app/admin" onClick={handleAdminClick} className="nav-admin-btn">
             Dashboard
           </a>
 
@@ -43,8 +43,8 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <a href="http://localhost:5175/admin/register">Admin Root Access</a>
-              <a href="http://localhost:5175/admin/login" className="btn btn-primary">
+              <a href="https://glamourbeauty-admin-production.up.railway.app/admin/register">Admin Root Access</a>
+              <a href="https://glamourbeauty-admin-production.up.railway.app/admin/login" className="btn btn-primary">
                 Admin Login
               </a>
             </>
