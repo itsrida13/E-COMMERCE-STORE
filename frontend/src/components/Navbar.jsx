@@ -17,9 +17,9 @@ export default function Navbar() {
     const adminData = localStorage.getItem("admin");
 
     const adminUrl =
-      adminToken || adminData
-        ? "http://localhost:5175/admin"
-        : "http://localhost:5175/admin/login";
+  adminToken || adminData
+    ? "https://dependable-quietude-production-bfac.up.railway.app/admin"
+    : "https://dependable-quietude-production-bfac.up.railway.app/admin/login";
 
     window.open(adminUrl, "_blank", "noopener,noreferrer");
   };
@@ -38,7 +38,7 @@ export default function Navbar() {
           <Link to="/products">Products</Link>
 
           <a
-            href="http://localhost:5175/admin"
+            href="https://dependable-quietude-production-bfac.up.railway.app/admin"
             onClick={handleAdminClick}
             className="nav-admin-btn"
           >
