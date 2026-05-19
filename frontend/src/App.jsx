@@ -27,14 +27,16 @@ import { HelmetProvider } from "react-helmet-async";
 function AppLayout() {
   const location = useLocation();
 
+  const isAdminPage = location.pathname.startsWith("/admin");
+
   const hideFooter =
-    location.pathname.startsWith("/admin") ||
+    isAdminPage ||
     location.pathname === "/login" ||
     location.pathname === "/register";
 
   return (
     <>
-      <Navbar />
+      {!isAdminPage && <Navbar />}
 
       <main>
         <Routes>
@@ -48,11 +50,12 @@ function AppLayout() {
           <Route path="/payment" element={<Payment />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/orders" element={<Orders />} />
+
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/analytics" element={<AnalyticsDashboard />} />
           <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/contact" element={<Contact />} />
 
+          <Route path="/contact" element={<Contact />} />
           <Route path="/faqs" element={<FAQs />} />
           <Route path="/shipping-policy" element={<ShippingPolicy />} />
           <Route path="/return-policy" element={<ReturnPolicy />} />
@@ -62,7 +65,7 @@ function AppLayout() {
 
       {!hideFooter && <Footer />}
 
-      <ChatWidget />
+      {!isAdminPage && <ChatWidget />}
     </>
   );
 }
