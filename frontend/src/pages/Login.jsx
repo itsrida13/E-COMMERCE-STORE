@@ -25,7 +25,7 @@ export default function Login() {
       const msg = err.response?.data;
       if (typeof msg === "string") setError(msg);
       else if (msg?.error) setError(msg.error);
-      else if (!err.response) setError("Cannot reach server. Is the backend running on http://localhost:5000?");
+      else if (!err.response) setError("Cannot reach server. Please check your internet connection or try again later.");
       else setError("Login failed. Please try again.");
     } finally {
       setLoading(false);

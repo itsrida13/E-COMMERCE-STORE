@@ -81,7 +81,19 @@ export default function SearchBar() {
                   className="ac-item"
                   onClick={() => setIsOpen(false)}
                 >
-                  <img src={item.image ? (item.image.startsWith("http") ? item.image : `http://localhost:5000${item.image}`) : "/placeholder.png"} alt={item.name} className="ac-img" />
+                  <img
+  src={
+    item.image
+      ? (
+          item.image.startsWith("http")
+            ? item.image
+            : `https://observant-truth-production-f7df.up.railway.app${item.image}`
+        )
+      : "/placeholder.png"
+  }
+  alt={item.name}
+  className="ac-img"
+/>
                   <div className="ac-info">
                     <div className="ac-name">{item.name}</div>
                     <div className="ac-price">${item.price.toFixed(2)}</div>

@@ -82,7 +82,9 @@ export default function ChatWidget() {
 
   const getProductImage = (image) => {
     if (!image) return "";
-    return image.startsWith("http") ? image : `http://localhost:5000${image}`;
+    return image.startsWith("http")
+  ? image
+  : `https://observant-truth-production-f7df.up.railway.app${image}`;
   };
 
   return (
