@@ -270,11 +270,19 @@ export default function InventoryManagement() {
     return "bg-gray-100 text-gray-800";
   };
 
-  const getProductImageUrl = (imagePath) => {
-    if (!imagePath) return "https://via.placeholder.com/48?text=No+Image";
-    if (imagePath.startsWith("http")) return imagePath;
-    return `${API_BASE}${imagePath.startsWith("/") ? "" : "/"}${imagePath}`;
-  };
+ const getProductImageUrl = (imagePath) => {
+  if (!imagePath) return "https://via.placeholder.com/48?text=No+Image";
+
+  if (imagePath.startsWith("http://") || imagePath.startsWith("https://") || imagePath.startsWith("data:")) {
+    return imagePath;
+  }
+
+  if (imagePath.startsWith("/uploads")) {
+    return `${API_BASE}${imagePath}`;
+  }
+
+  return `${API_BASE}/uploads/${imagePath}`;
+};
 
   const formatCurrency = (value) => {
     return Number(value || 0).toLocaleString(undefined, {
@@ -410,10 +418,13 @@ export default function InventoryManagement() {
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
                             <img
-                              src={getProductImageUrl(product.image)}
-                              alt={product.name}
-                              className="w-10 h-10 rounded-md object-cover border border-gray-200"
-                            />
+  src={getProductImageUrl(product.image)}
+  alt={product.name}
+  className="w-10 h-10 rounded-md object-cover border border-gray-200"
+  onError={(e) => {
+    e.currentTarget.src = "https://via.placeholder.com/48?text=No+Image";
+  }}
+/>
                             <div>
                               <p className="font-semibold text-gray-800">
                                 {product.name || "Unnamed Product"}
