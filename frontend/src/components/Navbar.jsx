@@ -18,8 +18,8 @@ export default function Navbar() {
 
     const adminUrl =
   adminToken || adminData
-    ? "https://dependable-quietude-production-bfac.up.railway.app/admin"
-    : "https://dependable-quietude-production-bfac.up.railway.app/admin/login";
+    ? "https://glamourbeauty-admin-production.up.railway.app/admin"
+    : "https://glamourbeauty-admin-production.up.railway.app/admin/login";
 
     window.open(adminUrl, "_blank", "noopener,noreferrer");
   };
@@ -38,7 +38,7 @@ export default function Navbar() {
           <Link to="/products">Products</Link>
 
           <a
-            href="https://dependable-quietude-production-bfac.up.railway.app/admin"
+            href="https://glamourbeauty-admin-production.up.railway.app/admin"
             onClick={handleAdminClick}
             className="nav-admin-btn"
           >
