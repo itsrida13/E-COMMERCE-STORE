@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API_BASE = "http://localhost:5000";
+const API_BASE =
+  import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 const API_URL = `${API_BASE}/api`;
 
 const api = axios.create({
@@ -24,31 +26,20 @@ export const adminRegister = (data) => api.post("/auth/admin/register", data);
 export const login = (data) => api.post("/auth/login", data);
 
 // Products
-export const getProducts = (params) =>
-  axios.get("http://localhost:5000/api/products", { params });
+export const getProducts = (params) => api.get("/products", { params });
 
 export const searchAutocomplete = (q) =>
-  axios.get("http://localhost:5000/api/products/autocomplete", {
+  api.get("/products/autocomplete", {
     params: { q },
   });
 
-export const getProduct = (id) =>
-  axios.get(`http://localhost:5000/api/products/${id}`);
+export const getProduct = (id) => api.get(`/products/${id}`);
 
-export const createProduct = (data) =>
-  axios.post("http://localhost:5000/api/products", data, {
-    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  });
+export const createProduct = (data) => api.post("/products", data);
 
-export const updateProduct = (id, data) =>
-  axios.put(`http://localhost:5000/api/products/${id}`, data, {
-    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  });
+export const updateProduct = (id, data) => api.put(`/products/${id}`, data);
 
-export const deleteProduct = (id) =>
-  axios.delete(`http://localhost:5000/api/products/${id}`, {
-    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  });
+export const deleteProduct = (id) => api.delete(`/products/${id}`);
 
 // Orders
 export const createOrder = (data) => api.post("/orders", data);
@@ -59,37 +50,26 @@ export const updateOrderStatus = (id, orderStatus) =>
   api.put(`/orders/${id}/status`, { orderStatus });
 
 // Wishlist
-export const getWishlist = () =>
-  axios.get(`${API_URL}/wishlist`, {
-    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  });
+export const getWishlist = () => api.get("/wishlist");
 
 export const addToWishlist = (productId) =>
-  axios.post(
-    `${API_URL}/wishlist/${productId}`,
-    {},
-    {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-    }
-  );
+  api.post(`/wishlist/${productId}`, {});
 
 export const removeFromWishlist = (productId) =>
-  axios.delete(`${API_URL}/wishlist/${productId}`, {
-    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  });
+  api.delete(`/wishlist/${productId}`);
 
 // Payment
 export const createPaymentIntent = (amount) =>
   api.post("/payment/create-payment-intent", { amount });
 
-// Recommendations (Public)
+// Recommendations
 export const getRecommendations = (params) =>
-  axios.get("http://localhost:5000/api/products/recommendations", { params });
+  api.get("/products/recommendations", { params });
 
-// Chatbot (Auth optional)
+// Chatbot
 export const sendChatbotMessage = (message) => api.post("/chat", { message });
 
-// Analytics (Admin)
+// Analytics
 export const getAnalyticsDashboard = (days = 90) =>
   api.get("/analytics/dashboard", { params: { days } });
 
